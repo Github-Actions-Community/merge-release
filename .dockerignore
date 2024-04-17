@@ -5,3 +5,5 @@
 !./entrypoint.sh
 !./src
 !./src/*
+!./package.json
+!./package-lock.json

@@ -2,11 +2,13 @@
   "name": "@github-actions-community/merge-release",
   "version": "5.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
-    "test": "standard"
+    "lint": "eslint --fix 'src/**/*.js'",
+    "test": "eslint 'src/**/*.js'"
   },
   "bin": {
-    "merge-release": "./merge-release-run.js"
+    "merge-release": "./src/merge-release-run.js"
   },
   "repository": {
     "type": "git",
@@ -20,11 +22,12 @@
   },
   "homepage": "https://github.com/Github-Actions-Community/auto-release#readme",
   "dependencies": {
-    "bent": "1.5.13",
-    "simple-git": "^1.113.0",
-    "yargs": "^12.0.5"
+    "bent": "7.3.12",
+    "simple-git": "^3.24.0"
   },
   "devDependencies": {
-    "standard": "^12.0.1"
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0"
   }
 }

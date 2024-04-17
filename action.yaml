@@ -1,39 +1,67 @@
-name: 'Merge Release'
-description: 'Deploy your package to NPM and Github using semantic versioning'
+name: Merge Release
+description: Deploy your package to NPM and Github using semantic versioning
+
 branding:
-  icon: 'upload-cloud'
-  color: 'purple'
-runs: 
-  using: 'docker'
-  image: 'Dockerfile'
+  icon: upload-cloud
+  color: purple
+
+runs:
+  using: docker
+  image: Dockerfile
+
+outputs:
+  version:
+    description: The new version used as the release version
+
 inputs:
   GITHUB_TOKEN:
-    description: 'GITHUB_TOKEN' 
+    description: Github token to allow tagging the version
     required: true
   NPM_AUTH_TOKEN:
-    description: 'NPM_AUTH_TOKEN' 
+    description: NPM Auth Token to publish to NPM
     required: true
   NPM_PRIVATE:
-    description: 'NPM_PRIVATE' 
+    description: If you wish privately publish your package please ensure you have set this to `true`
     required: false
   DEPLOY_DIR:
-    description: 'DEPLOY_DIR' 
-    required: false
-  NPM_REGISTRY_URL:
-    description: 'NPM_REGISTRY_URL' 
-    required: false
-  GIT_TAG_SUFFIX:
-    description: 'GIT_TAG_SUFFIX' 
+    description: The path where the dist `package.json` is to run npm publish. Defaults to the root dir
     required: false
   SRC_PACKAGE_DIR:
-    description: 'SRC_PACKAGE_DIR' 
+    description: The path where the src package.json is found. Defaults to the root dir
+    required: false
+  NPM_REGISTRY_URL:
+    description: The url of the registry that the package should published to
+    required: false
+  MINOR_TYPES:
+    description: A list of conventional commit types (separated by a |) to consider a release as a minor release
+    required: false
+  MAJOR_TYPES:
+    description: A list of conventional commit types (separated by a |) to consider a release as a major release
+    required: false
+  DISABLE_GIT_TAG:
+    description: Set to `true` to disable the git tag feature
+    required: false
+  NPM_CONFIG_USERCONFIG:
+    description: The path to the user .npmrc file
+    required: false
+  NPM_CUSTOM_NPMRC:
+    description: Provide the contents of a fully-formed .npmrc file
+    required: false
+  NPM_STRICT_SSL:
+    description: 'Set to `false` to enforce http (instead of https) for the NPM_REGISTRY_URL (default: `true`)'
+    required: false
+  DEBUG:
+    description: Enable debug logging
+    required: false
+  GIT_TAG_SUFFIX:
+    description: GIT_TAG_SUFFIX
     required: false
   GITHUB_SHA:
-    description: 'GITHUB_SHA' 
+    description: GITHUB_SHA
     required: false
   GITHUB_ACTOR:
-    description: 'GITHUB_ACTOR' 
+    description: GITHUB_ACTOR
     required: false
   GITHUB_REPOSITORY:
-    description: 'GITHUB_REPOSITORY' 
+    description: GITHUB_REPOSITORY
     required: false

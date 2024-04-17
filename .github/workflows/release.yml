@@ -13,11 +13,11 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         cache: npm
-        cache-dependency-path: src/package-lock.json
+        cache-dependency-path: package-lock.json
     - name: Build
-      run: cd src && npm install
+      run: npm install
     - name: Test
-      run: cd src && npm test
+      run: npm test
   publish:
     name: Publish
     needs: test
@@ -28,15 +28,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: npm
-          cache-dependency-path: src/package-lock.json
+          cache-dependency-path: package-lock.json
       - name: Build
-        run: cd src && npm install
+        run: npm install
       - name: Test
-        run: cd src && npm test
+        run: npm test
       - name: Publish
         uses: github-actions-community/merge-release@main
-        env:
-          DEPLOY_DIR: src
-          SRC_PACKAGE_DIR: src
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
